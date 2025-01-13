@@ -1,0 +1,7 @@
+name: SimpleElementsRework
+version: '1.0-SNAPSHOT'
+main: org.mateh.simpleelementsrework.Main
+api-version: '1.20'
+commands:
+  element:
+    description: Elemento
