@@ -19,7 +19,7 @@ public class FlameDash extends AbstractAbilities implements Abilities {
     private static final double DASH_DISTANCE = 7.0;
 
 
-    public FlameDash(Main main) { super("Flame Dash", "Fire", main, AbilitiesSlot.PRIMARY);}
+    public FlameDash(Main main) { super("Flame Dash", "Fire", main, AbilitiesSlot.THIRD);}
 
     @Override
     public void startAbilities(PlayerInteractEvent event, Player caster) {
@@ -28,7 +28,7 @@ public class FlameDash extends AbstractAbilities implements Abilities {
             return;
         }
 
-        if (isRightShift(event.getAction(), caster)) {
+        if (!isRightShift(event.getAction(), caster)) {
             return;
         }
 

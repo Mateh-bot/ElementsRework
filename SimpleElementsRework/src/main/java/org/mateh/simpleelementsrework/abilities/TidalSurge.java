@@ -25,7 +25,7 @@ public class TidalSurge extends AbstractAbilities implements Abilities {
     private static final double KNOCKBACK_RADIUS = 3.0;
 
 
-    public TidalSurge(Main main) { super("Tidal Surge", "Water", main, AbilitiesSlot.PRIMARY);}
+    public TidalSurge(Main main) { super("Tidal Surge", "Water", main, AbilitiesSlot.THIRD);}
 
     @Override
     public void startAbilities(PlayerInteractEvent event, Player caster) {

@@ -19,7 +19,7 @@ public class Ignite extends AbstractAbilities implements Abilities {
     private static final int DAMAGE = 2;
 
     public Ignite(Main main) {
-        super("Ignite", "Fire", main, AbilitiesSlot.SECONDARY);
+        super("Ignite", "Fire", main, AbilitiesSlot.FOURTH);
     }
 
     @Override

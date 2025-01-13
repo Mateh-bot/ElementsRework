@@ -7,6 +7,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.mateh.simpleelementsrework.Main;
@@ -23,7 +24,7 @@ public class PhoenixLeap extends AbstractAbilities implements Abilities {
     private static final int COOLDOWN_TIME = 3;
 
     public PhoenixLeap(Main main) {
-        super("Phoenix Leap", "Fire", main, AbilitiesSlot.SECONDARY);
+        super("Phoenix Leap", "Fire", main, AbilitiesSlot.FIVE);
     }
 
     @Override
@@ -32,7 +33,7 @@ public class PhoenixLeap extends AbstractAbilities implements Abilities {
             return;
         }
 
-        if (!isRightShift(event.getAction(), caster)) {
+        if (!isRightShiftSword(event.getAction(), caster)) {
             return;
         }
 

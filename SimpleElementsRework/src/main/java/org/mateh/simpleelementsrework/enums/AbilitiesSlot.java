@@ -4,5 +4,6 @@ public enum AbilitiesSlot {
     PRIMARY,
     SECONDARY,
     THIRD,
-    FOURTH;
+    FOURTH,
+    FIVE;
 }

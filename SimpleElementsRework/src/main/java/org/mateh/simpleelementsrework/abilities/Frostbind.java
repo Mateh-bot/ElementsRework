@@ -27,7 +27,7 @@ public class Frostbind extends AbstractAbilities implements Abilities {
     private static final int SLOW_AMPLIFIER = 1;
 
     public Frostbind(Main main) {
-        super("Frostbind", "Water", main, AbilitiesSlot.SECONDARY);
+        super("Frostbind", "Water", main, AbilitiesSlot.FOURTH);
     }
 
     @Override

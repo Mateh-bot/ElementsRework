@@ -24,7 +24,7 @@ public class InfernalShield extends AbstractAbilities implements Abilities {
     private static final double RADIUS = 3;
 
     public InfernalShield(Main main) {
-        super("Infernal Shield", "Fire", main, AbilitiesSlot.THIRD);
+        super("Infernal Shield", "Fire", main, AbilitiesSlot.SECONDARY);
     }
 
     @Override

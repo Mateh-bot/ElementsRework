@@ -21,7 +21,7 @@ public class AquaShield extends AbstractAbilities implements Abilities {
     private static final int COOLDOWN_TIME = 3;
 
     public AquaShield(Main main) {
-        super("Aqua Shield", "Water", main, AbilitiesSlot.THIRD);
+        super("Aqua Shield", "Water", main, AbilitiesSlot.SECONDARY);
     }
 
     @Override

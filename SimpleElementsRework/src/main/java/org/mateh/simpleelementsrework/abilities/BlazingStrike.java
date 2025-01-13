@@ -16,7 +16,7 @@ public class BlazingStrike extends AbstractAbilities implements Abilities {
     private static final int COOLDOWN_TIME = 0; // Cooldown in seconds
 
     public BlazingStrike(Main main) {
-        super("Blazing Strike", "Fire", main, AbilitiesSlot.FOURTH);
+        super("Blazing Strike", "Fire", main, AbilitiesSlot.PRIMARY);
     }
 
     @Override
@@ -54,8 +54,12 @@ public class BlazingStrike extends AbstractAbilities implements Abilities {
             }
         }
 
-        target.damage(2, caster);
-        target.setFireTicks(60);
+        if(target != null) {
+
+            target.damage(2, caster);
+            target.setFireTicks(60);
+        }
+
     }
 
     @Override

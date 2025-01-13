@@ -34,6 +34,8 @@ public class HotBarTask extends BukkitRunnable {
             AbstractAbilities primary = null;
             AbstractAbilities secondary = null;
             AbstractAbilities third = null;
+            AbstractAbilities fourth = null;
+            AbstractAbilities five = null;
             for (Abilities abilities : a) {
                 if (abilities instanceof AbstractAbilities abstractAbilities) {
                     if (abstractAbilities.getSlot() == AbilitiesSlot.PRIMARY) {
@@ -42,6 +44,10 @@ public class HotBarTask extends BukkitRunnable {
                         secondary = abstractAbilities;
                     } else if (abstractAbilities.getSlot() == AbilitiesSlot.THIRD) {
                         third = abstractAbilities;
+                    } else if (abstractAbilities.getSlot() == AbilitiesSlot.FOURTH) {
+                        fourth = abstractAbilities;
+                    } else if (abstractAbilities.getSlot() == AbilitiesSlot.FIVE){
+                        five = abstractAbilities;
                     }
                 }
             }
@@ -49,6 +55,8 @@ public class HotBarTask extends BukkitRunnable {
             if (primary == null) continue;
             if (secondary == null) continue;
             if (third == null) continue;
+            if (fourth == null) continue;
+            if (five == null) continue;
 
             if (element.equalsIgnoreCase("Fire")) {
                 element = ChatColor.RED + element;
@@ -65,8 +73,11 @@ public class HotBarTask extends BukkitRunnable {
             String primaryCooldown = ((Abilities) primary).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) primary).getCooldown(player);
             String secondCooldown = ((Abilities) secondary).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) secondary).getCooldown(player);
             String thirdCooldown = ((Abilities) third).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) third).getCooldown(player);
+            String fourthCooldown = ((Abilities) fourth).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) fourth).getCooldown(player);
+            String fiveCooldown = ((Abilities) five).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) five).getCooldown(player);
 
-            TextComponent textComponent = new TextComponent(element.toUpperCase() + " §f§l| §f" + primaryCooldown + " §f§l| §f" + secondCooldown + " §f§l| §F" + thirdCooldown);
+
+            TextComponent textComponent = new TextComponent(element.toUpperCase() + " §f§l| §f" + primaryCooldown + " §f§l| §f" + secondCooldown + " §f§l| §F" + thirdCooldown + " §f§l| §F " + fourthCooldown + " §f§l| §F " + fiveCooldown );
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, textComponent);
 
         }

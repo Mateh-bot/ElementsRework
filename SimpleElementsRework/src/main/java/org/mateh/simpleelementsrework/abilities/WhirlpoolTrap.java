@@ -26,7 +26,7 @@ public class WhirlpoolTrap extends AbstractAbilities implements Abilities {
     private static final double RADIUS = 3;
 
     public WhirlpoolTrap(Main main) {
-        super("Whirlpool Trap", "Water", main, AbilitiesSlot.SECONDARY);
+        super("Whirlpool Trap", "Water", main, AbilitiesSlot.FIVE);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class WhirlpoolTrap extends AbstractAbilities implements Abilities {
             return;
         }
 
-        if (!isRightShift(event.getAction(), caster)) {
+        if (!isRightShiftSword(event.getAction(), caster)) {
             return;
         }
 
