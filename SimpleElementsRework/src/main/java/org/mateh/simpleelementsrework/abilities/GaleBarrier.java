@@ -22,7 +22,7 @@ public class GaleBarrier extends AbstractAbilities implements Abilities {
     private static final int DURATION = 100; // 5 seconds
 
     public GaleBarrier(Main main) {
-        super("Gale Barrier", "Air", main, AbilitiesSlot.THIRD);
+        super("Gale Barrier", "Air", main, AbilitiesSlot.SECONDARY);
     }
 
     @Override

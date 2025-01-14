@@ -28,13 +28,15 @@ public class FlameDash extends AbstractAbilities implements Abilities {
             return;
         }
 
-        if (!isRightShift(event.getAction(), caster)) {
-            return;
-        }
 
         if (!isRight(event.getAction())) {
             return;
         }
+
+        if (isRightShift(event.getAction(), caster)) {
+            return;
+        }
+
 
         UUID playerId = caster.getUniqueId();
         long currentTime = System.currentTimeMillis();

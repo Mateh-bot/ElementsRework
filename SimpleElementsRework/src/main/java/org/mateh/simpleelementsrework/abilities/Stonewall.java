@@ -22,7 +22,7 @@ public class Stonewall extends AbstractAbilities implements Abilities {
     private static final int COOLDOWN_TIME = 3;
 
     public Stonewall(Main main) {
-        super("Stonewall", "Earth", main, AbilitiesSlot.THIRD);
+        super("Stonewall", "Earth", main, AbilitiesSlot.SECONDARY);
     }
 
     @Override

@@ -27,7 +27,7 @@ public class BoulderToss extends AbstractAbilities implements Abilities {
     private static final double RADIUS = 1.5;
 
     public BoulderToss(Main main) {
-        super("Boulder Toss", "Earth", main, AbilitiesSlot.SECONDARY);
+        super("Boulder Toss", "Earth", main, AbilitiesSlot.FIVE);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class BoulderToss extends AbstractAbilities implements Abilities {
             return;
         }
 
-        if (!isRightShift(event.getAction(), caster)) {
+        if (!isRightShiftSword(event.getAction(), caster)) {
             return;
         }
 
@@ -68,7 +68,7 @@ public class BoulderToss extends AbstractAbilities implements Abilities {
                 caster.getWorld().playSound(currentLocation, Sound.BLOCK_STONE_HIT, 1.0f, 1.0f);
 
                 for (Entity entity : caster.getWorld().getNearbyEntities(currentLocation, RADIUS, RADIUS, RADIUS)) {
-                    if (entity instanceof LivingEntity target && !entity.equals(caster)) {
+                    if (entity instanceof Player target && !entity.equals(caster)) {
                         target.damage(DAMAGE, caster);
 
                         target.getWorld().spawnParticle(Particle.BLOCK_CRACK, target.getLocation(), 20, 0.3, 0.3, 0.3, Material.STONE.createBlockData());

@@ -28,7 +28,7 @@ public class ElectrifiedBarrier extends AbstractAbilities implements Abilities {
     private static final int REDUCTION_LEVEL = 1;
 
     public ElectrifiedBarrier(Main main) {
-        super("Electrified Barrier", "Lightning", main, AbilitiesSlot.THIRD);
+        super("Electrified Barrier", "Lightning", main, AbilitiesSlot.SECONDARY);
     }
 
     @Override

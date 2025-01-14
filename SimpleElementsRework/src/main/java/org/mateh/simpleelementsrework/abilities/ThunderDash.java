@@ -24,7 +24,7 @@ public class ThunderDash extends AbstractAbilities implements Abilities {
     private static final double STUN_RADIUS = 3.0;
     private static final int STUN_DURATION = 60;
 
-    public ThunderDash(Main main) { super("Thunder Dash", "Lightning", main, AbilitiesSlot.PRIMARY);}
+    public ThunderDash(Main main) { super("Thunder Dash", "Lightning", main, AbilitiesSlot.THIRD);}
 
     @Override
     public void startAbilities(PlayerInteractEvent event, Player caster) {

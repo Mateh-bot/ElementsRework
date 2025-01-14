@@ -1,6 +1,7 @@
 package org.mateh.simpleelementsrework.abilities;
 
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
@@ -28,6 +29,8 @@ public class Ignite extends AbstractAbilities implements Abilities {
             return;
         }
 
+
+
         if (!isRightShift(event.getAction(), caster)) {
             return;
         }
@@ -48,16 +51,23 @@ public class Ignite extends AbstractAbilities implements Abilities {
         // Activate ability
         Player target = null;
         double range = 20;
-        for (Player nearbyPlayer : caster.getWorld().getPlayers()) {
-            if (nearbyPlayer == caster) continue;
-            if (nearbyPlayer.getLocation().distance(caster.getLocation()) > range) continue;
 
-            Vector directionToPlayer = nearbyPlayer.getLocation().toVector().subtract(caster.getEyeLocation().toVector()).normalize();
-            double dotProduct = caster.getEyeLocation().getDirection().normalize().dot(directionToPlayer);
+        // Realiza un ray tracing y busca entidades en la dirección de la mirada
+        for (Entity entity : caster.getWorld().getNearbyEntities(caster.getEyeLocation(), range, range, range)) {
+
+            if (!(entity instanceof Player potentialTarget)) continue; // Filtrar solo jugadores
+            if (entity == caster) continue; // Ignorar al caster
+
+            // Verifica si el jugador está directamente en la línea de visión
+            Vector directionToEntity = potentialTarget.getLocation().toVector().subtract(caster.getEyeLocation().toVector()).normalize();
+            double dotProduct = caster.getEyeLocation().getDirection().normalize().dot(directionToEntity);
 
             if (dotProduct > 0.99) {
-                target = nearbyPlayer;
-                break;
+                // Verifica si hay obstrucciones entre el caster y el objetivo
+                if (caster.getWorld().rayTraceEntities(caster.getEyeLocation(), directionToEntity, range, 0.1, e -> e instanceof Player && e != caster) != null) {
+                    target = potentialTarget;
+                    break;
+                }
             }
         }
 

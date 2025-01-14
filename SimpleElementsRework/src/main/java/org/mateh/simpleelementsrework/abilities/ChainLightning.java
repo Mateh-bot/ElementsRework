@@ -25,7 +25,7 @@ public class ChainLightning extends AbstractAbilities implements Abilities {
     private static final int STUN_DURATION = 60;
 
     public ChainLightning(Main main) {
-        super("Chain Lightning", "Lightning", main, AbilitiesSlot.SECONDARY);
+        super("Chain Lightning", "Lightning", main, AbilitiesSlot.FOURTH);
     }
 
     @Override

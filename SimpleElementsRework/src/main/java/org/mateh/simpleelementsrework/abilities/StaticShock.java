@@ -1,24 +1,27 @@
 package org.mateh.simpleelementsrework.abilities;
 
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.util.Vector;
 import org.mateh.simpleelementsrework.Main;
 import org.mateh.simpleelementsrework.abstracts.AbstractAbilities;
 import org.mateh.simpleelementsrework.enums.AbilitiesSlot;
 import org.mateh.simpleelementsrework.interfaces.Abilities;
-import org.mateh.simpleelementsrework.interfaces.ElementType;
-import org.mateh.simpleelementsrework.utils.ConfigUtils;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class BlazingStrike extends AbstractAbilities implements Abilities {
+public class StaticShock extends AbstractAbilities implements Abilities {
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
-    private static final int COOLDOWN_TIME = 5; // Cooldown in seconds
+    private static final int COOLDOWN_TIME = 5;
+    private static final double RANGE = 8.0;
+    private static final double DAMAGE = 2.0;
+    private static final int DURATION = 20;
 
-    public BlazingStrike(Main main) {
-        super("Blazing Strike", "Fire", main, AbilitiesSlot.PRIMARY);
+    public StaticShock(Main main) {
+        super("Static Shock", "Lightning", main, AbilitiesSlot.PRIMARY);
     }
 
     @Override
@@ -40,38 +43,35 @@ public class BlazingStrike extends AbstractAbilities implements Abilities {
             long lastUsed = cooldowns.get(playerId);
             long timeLeft = (lastUsed + COOLDOWN_TIME * 1000) - System.currentTimeMillis();
             if (timeLeft > 0) {
-                caster.sendMessage("§cBlazing Strike is on cooldown! Time left: " + (timeLeft / 1000) + "s");
+                caster.sendMessage("§cStatic Shock is on cooldown! Time left: " + (timeLeft / 1000) + "s");
                 return;
             }
         }
 
         // Activate ability
-        Player target = null;
-        double range = 5;
+        caster.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, caster.getLocation(), 10, 0.5, 0.5, 0.5, 0.1);
+        caster.getWorld().playSound(caster.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.2f);
 
-        for (Player nearbyPlayer : caster.getWorld().getPlayers()) {
-            if (nearbyPlayer == caster) continue;
-            if (nearbyPlayer.getLocation().distance(caster.getLocation()) > range)
-                continue;
+        Entity target = caster.getWorld().getNearbyEntities(caster.getLocation(), RANGE, RANGE, RANGE).stream()
+                .filter(entity -> entity instanceof Player && entity != caster)
+                .findFirst()
+                .orElse(null);
 
-            Vector directionToPlayer = nearbyPlayer.getEyeLocation().toVector()
-                    .subtract(caster.getEyeLocation().toVector())
-                    .normalize();
+        if (target != null && target instanceof Player) {
+            Player enemy = (Player) target;
 
-            double dotProduct = caster.getEyeLocation().getDirection().normalize().dot(directionToPlayer);
+            enemy.damage(DAMAGE, caster);
 
-            if (dotProduct > 0.99) {
-                target = nearbyPlayer;
-                break;
-            }
+            enemy.addPotionEffect(new org.bukkit.potion.PotionEffect(
+                    org.bukkit.potion.PotionEffectType.SLOW,
+                    DURATION,
+                    255,
+                    false, false, true
+            ));
+
+            // Set cooldown
+            cooldowns.put(playerId, System.currentTimeMillis());
         }
-
-        if(target != null) {
-            target.damage(ConfigUtils.getDamage(ElementType.BLAZING_STRIKE), caster);
-            target.setFireTicks(60);
-        }
-
-        cooldowns.put(playerId, System.currentTimeMillis());
     }
 
     @Override

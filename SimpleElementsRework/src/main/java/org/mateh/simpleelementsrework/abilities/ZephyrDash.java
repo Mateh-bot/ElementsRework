@@ -23,7 +23,7 @@ public class ZephyrDash extends AbstractAbilities implements Abilities {
     private static final double RADIUS = 5;
 
     public ZephyrDash(Main main) {
-        super("Zephyr Dash", "Air", main, AbilitiesSlot.PRIMARY);
+        super("Zephyr Dash", "Air", main, AbilitiesSlot.THIRD);
     }
 
     @Override

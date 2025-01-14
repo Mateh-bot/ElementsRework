@@ -74,10 +74,10 @@ public class HotBarTask extends BukkitRunnable {
             String secondCooldown = ((Abilities) secondary).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) secondary).getCooldown(player);
             String thirdCooldown = ((Abilities) third).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) third).getCooldown(player);
             String fourthCooldown = ((Abilities) fourth).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) fourth).getCooldown(player);
-            String fiveCooldown = ((Abilities) five).getCooldown(player) == 0 ? "§aREADY" : "§c" + ((Abilities) five).getCooldown(player);
+            String fiveCooldown = ((Abilities) five).getCooldown(player) == 0 ? "§dREADY" : "§c" + ((Abilities) five).getCooldown(player);
 
 
-            TextComponent textComponent = new TextComponent(element.toUpperCase() + " §f§l| §f" + primaryCooldown + " §f§l| §f" + secondCooldown + " §f§l| §F" + thirdCooldown + " §f§l| §F " + fourthCooldown + " §f§l| §F " + fiveCooldown );
+            TextComponent textComponent = new TextComponent(element.toUpperCase() + " §f§l| §f" + primaryCooldown + " §f§l| §f" + secondCooldown + " §f§l| §F" + thirdCooldown + " §f§l| §F " + fourthCooldown + " §f§l| §d " + fiveCooldown );
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, textComponent);
 
         }

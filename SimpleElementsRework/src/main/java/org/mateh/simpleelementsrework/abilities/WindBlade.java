@@ -1,7 +1,9 @@
 package org.mateh.simpleelementsrework.abilities;
 
+import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
@@ -13,12 +15,15 @@ import org.mateh.simpleelementsrework.interfaces.Abilities;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class HydroBlast extends AbstractAbilities implements Abilities {
+public class WindBlade extends AbstractAbilities implements Abilities {
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
-    private static final int COOLDOWN_TIME = 5; // Cooldown in seconds
+    private static final int COOLDOWN_TIME = 5;
+    private static final double DAMAGE = 2.0;
+    private static final double RANGE = 10.0;
+    private static final double ARMOR_REDUCTION = 2.0;
 
-    public HydroBlast(Main main) {
-        super("Hydro Blast", "Water", main, AbilitiesSlot.PRIMARY);
+    public WindBlade(Main main) {
+        super("Wind Blade", "Air", main, AbilitiesSlot.PRIMARY);
     }
 
     @Override
@@ -40,34 +45,35 @@ public class HydroBlast extends AbstractAbilities implements Abilities {
             long lastUsed = cooldowns.get(playerId);
             long timeLeft = (lastUsed + COOLDOWN_TIME * 1000) - System.currentTimeMillis();
             if (timeLeft > 0) {
-                caster.sendMessage("§cHydro Blast is on cooldown! Time left: " + (timeLeft / 1000) + "s");
+                caster.sendMessage("§cWind Blade is on cooldown! Time left: " + (timeLeft / 1000) + "s");
                 return;
             }
         }
 
         // Activate ability
-        double range = 10;
-        for (Player nearbyPlayer : caster.getWorld().getPlayers()) {
-            if (nearbyPlayer == caster) continue;
-            if (nearbyPlayer.getLocation().distance(caster.getLocation()) > range)
-                continue;
+        Vector direction = caster.getLocation().getDirection().normalize();
 
-            Vector directionToPlayer = nearbyPlayer.getLocation().toVector()
-                    .subtract(caster.getLocation().toVector())
-                    .normalize()
-                    .multiply(3); // Push back 3 blocks
+        caster.getWorld().spawnParticle(Particle.SWEEP_ATTACK, caster.getLocation(), 5, 0.5, 0.5, 0.5, 0.1);
+        caster.getWorld().playSound(caster.getLocation(), Sound.ITEM_TRIDENT_THUNDER, 1.0f, 1.2f);
 
-            nearbyPlayer.damage(1, caster); // Deal 1 damage
-            nearbyPlayer.setVelocity(directionToPlayer);
+        for (double i = 0; i < RANGE; i += 0.5) {
+            Vector step = direction.clone().multiply(i);
+            Location bladeLocation = caster.getLocation().add(step);
 
-            // Play water sound at the target's location
-            nearbyPlayer.getWorld().playSound(nearbyPlayer.getLocation(), Sound.ENTITY_PLAYER_SPLASH, 1.0f, 1.0f);
+            caster.getWorld().spawnParticle(Particle.CLOUD, bladeLocation, 3, 0.1, 0.1, 0.1, 0.02);
 
-            // Spawn water particles along the direction to the target
-            for (int i = 0; i <= 10; i++) {
-                Vector step = directionToPlayer.clone().multiply(i / 10.0);
-                caster.getWorld().spawnParticle(Particle.WATER_SPLASH,
-                        caster.getLocation().add(step), 1, 0.1, 0.1, 0.1, 0.05);
+            for (Entity entity : bladeLocation.getWorld().getNearbyEntities(bladeLocation, 1.0, 1.0, 1.0)) {
+                if (entity instanceof Player && entity != caster) {
+                    Player target = (Player) entity;
+
+                    target.damage(DAMAGE, caster);
+
+                    double newArmor = Math.max(0, target.getAttribute(org.bukkit.attribute.Attribute.GENERIC_ARMOR).getValue() - ARMOR_REDUCTION);
+                    target.getAttribute(org.bukkit.attribute.Attribute.GENERIC_ARMOR).setBaseValue(newArmor);
+
+                    i = RANGE;
+                    break;
+                }
             }
         }
 

@@ -32,7 +32,7 @@ public class EarthquakeStomp extends AbstractAbilities implements Abilities {
 
 
     public EarthquakeStomp(Main main) {
-        super("Earthquake Stomp", "Earth", main, AbilitiesSlot.PRIMARY);
+        super("Earthquake Stomp", "Earth", main, AbilitiesSlot.THIRD);
     }
 
     @Override

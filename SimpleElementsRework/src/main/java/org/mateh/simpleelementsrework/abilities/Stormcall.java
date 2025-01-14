@@ -14,6 +14,8 @@ import org.mateh.simpleelementsrework.Main;
 import org.mateh.simpleelementsrework.abstracts.AbstractAbilities;
 import org.mateh.simpleelementsrework.enums.AbilitiesSlot;
 import org.mateh.simpleelementsrework.interfaces.Abilities;
+import org.mateh.simpleelementsrework.interfaces.ElementType;
+import org.mateh.simpleelementsrework.utils.ConfigUtils;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -27,7 +29,7 @@ public class Stormcall extends AbstractAbilities implements Abilities {
     private static final int DURATION = 5;
 
     public Stormcall(Main main) {
-        super("Stormcall", "Lightning", main, AbilitiesSlot.SECONDARY);
+        super("Stormcall", "Lightning", main, AbilitiesSlot.FIVE);
     }
 
     @Override
@@ -36,7 +38,7 @@ public class Stormcall extends AbstractAbilities implements Abilities {
             return;
         }
 
-        if (!isRightShift(event.getAction(), caster)) {
+        if (!isRightShiftSword(event.getAction(), caster)) {
             return;
         }
 
@@ -58,7 +60,6 @@ public class Stormcall extends AbstractAbilities implements Abilities {
 
         new BukkitRunnable() {
             int tickCount = 0;
-
             @Override
             public void run() {
                 // Apply damage to enemies
@@ -67,7 +68,8 @@ public class Stormcall extends AbstractAbilities implements Abilities {
                         Player target = (Player) entity;
                         if (!target.equals(caster)) {
                             // Apply damage and visual effects
-                            target.damage(DAMAGE_PER_SECOND);
+                            target.getWorld().strikeLightningEffect(target.getLocation());
+                            target.damage(ConfigUtils.getDamage(ElementType.STORM_CALL));
                             target.getWorld().spawnParticle(Particle.CRIT_MAGIC, target.getLocation(), 5, 0.5, 0.5, 0.5, 0.1);
                             target.getWorld().playSound(target.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0f, 1.0f);
                         }
@@ -76,7 +78,7 @@ public class Stormcall extends AbstractAbilities implements Abilities {
 
                 // Stop storm after duration
                 tickCount++;
-                if (tickCount >= DURATION * 20) {
+                if (tickCount >= DURATION) {
                     cancel();
                 }
             }

@@ -24,7 +24,7 @@ public class TornadoStrike extends AbstractAbilities implements Abilities {
     private static final double RADIUS = 5.0;
 
     public TornadoStrike(Main main) {
-        super("Tornado Strike", "Air", main, AbilitiesSlot.SECONDARY);
+        super("Tornado Strike", "Air", main, AbilitiesSlot.FOURTH);
     }
 
     @Override

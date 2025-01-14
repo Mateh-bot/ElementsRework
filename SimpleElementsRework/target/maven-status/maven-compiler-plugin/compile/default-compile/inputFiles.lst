@@ -1,6 +1,7 @@
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\AquaShield.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\BlazingStrike.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\BoulderToss.java
+C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\Burrow.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\ChainLightning.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\EarthquakeStomp.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\ElectrifiedBarrier.java
@@ -11,6 +12,8 @@ C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleel
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\Ignite.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\InfernalShield.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\PhoenixLeap.java
+C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\RockSlam.java
+C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\StaticShock.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\Stonewall.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\Stormcall.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\ThunderDash.java
@@ -18,6 +21,7 @@ C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleel
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\TornadoStrike.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\UpdraftLeap.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\WhirlpoolTrap.java
+C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\WindBlade.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abilities\ZephyrDash.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\abstracts\AbstractAbilities.java
 C:\Users\Francisco\Desktop\SimpleElementsRework\src\main\java\org\mateh\simpleelementsrework\commands\MainCommand.java

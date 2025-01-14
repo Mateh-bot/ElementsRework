@@ -21,7 +21,7 @@ public class UpdraftLeap extends AbstractAbilities implements Abilities {
     private static final int COOLDOWN_TIME = 3;
 
     public UpdraftLeap(Main main) {
-        super("Updraft Leap", "Air", main, AbilitiesSlot.SECONDARY);
+        super("Updraft Leap", "Air", main, AbilitiesSlot.FIVE);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UpdraftLeap extends AbstractAbilities implements Abilities {
             return;
         }
 
-        if (!isRightShift(event.getAction(), caster)) {
+        if (!isRightShiftSword(event.getAction(), caster)) {
             return;
         }
 

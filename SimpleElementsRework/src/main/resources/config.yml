@@ -1,0 +1,6 @@
+damage:
+  storm_call: 10
+  blazing_strike: 1
+
+cooldown:
+  storm_call: 10
